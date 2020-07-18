@@ -11,5 +11,6 @@ data class Customer(
     val riskLevel: Int,
     val retirementAge: Int
 ) {
+
     fun yearsToRetirementAt(date: LocalDate) = retirementAge - Period.between(dateOfBirth, date).years
 }

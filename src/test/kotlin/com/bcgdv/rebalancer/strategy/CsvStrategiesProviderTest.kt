@@ -22,24 +22,24 @@ class CsvStrategiesProviderTest {
             .containsExactlyInAnyOrder(
                 Strategy(
                     id = 1,
-                    riskLevelRange = IntRange(0, 3),
-                    yearsToRetirementRange = IntRange(20, 30),
+                    riskLevelRange = 0..3,
+                    yearsToRetirementRange = 20..30,
                     stocksPercentage = 20,
                     cashPercentage = 20,
                     bondsPercentage = 60
                 ),
                 Strategy(
                     id = 2,
-                    riskLevelRange = IntRange(0, 3),
-                    yearsToRetirementRange = IntRange(10, 20),
+                    riskLevelRange = 0..3,
+                    yearsToRetirementRange = 10..20,
                     stocksPercentage = 10,
                     cashPercentage = 20,
                     bondsPercentage = 70
                 ),
                 Strategy(
                     id = 3,
-                    riskLevelRange = IntRange(6, 9),
-                    yearsToRetirementRange = IntRange(20, 30),
+                    riskLevelRange = 6..9,
+                    yearsToRetirementRange = 20..30,
                     stocksPercentage = 10,
                     cashPercentage = 0,
                     bondsPercentage = 90

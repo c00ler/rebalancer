@@ -2,9 +2,9 @@ package com.bcgdv.rebalancer.customer
 
 import com.bcgdv.rebalancer.ApplicationDefaults
 import com.bcgdv.rebalancer.utils.CsvSource
+import com.bcgdv.rebalancer.utils.extensions.toLocalDate
 import org.apache.commons.csv.CSVFormat
 import org.springframework.core.io.Resource
-import java.time.LocalDate
 
 class CsvCustomersProvider(
     private val customersCsv: Resource,
@@ -25,12 +25,10 @@ class CsvCustomersProvider(
             Customer(
                 id = record[CUSTOMER_ID].toLong(),
                 email = record[EMAIL],
-                dateOfBirth = record[DATE_OF_BIRTH].toDateOfBirth(),
+                dateOfBirth = record[DATE_OF_BIRTH].toLocalDate(),
                 riskLevel = record[RISK_LEVEL].toInt(),
                 retirementAge = record[RETIREMENT_AGE].toInt()
             )
         }
     }
 }
-
-private fun String.toDateOfBirth() = LocalDate.parse(this)
