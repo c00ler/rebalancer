@@ -1,4 +1,4 @@
-package com.bcgdv.rebalancer.config
+package com.bcgdv.rebalancer.customer.config
 
 import com.bcgdv.rebalancer.customer.CsvCustomersProvider
 import org.springframework.context.annotation.Bean

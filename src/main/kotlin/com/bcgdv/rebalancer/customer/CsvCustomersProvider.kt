@@ -1,31 +1,15 @@
 package com.bcgdv.rebalancer.customer
 
+import com.bcgdv.rebalancer.ApplicationDefaults
+import com.bcgdv.rebalancer.utils.CsvSource
 import org.apache.commons.csv.CSVFormat
-import org.apache.commons.csv.CSVParser
 import org.springframework.core.io.Resource
-import java.nio.charset.StandardCharsets
 import java.time.LocalDate
 
 class CsvCustomersProvider(
-    private val customersResource: Resource,
-    private val format: CSVFormat = CSVFormat.DEFAULT.withHeader()
-) : CustomersProvider {
-
-    override fun findAll(): Collection<Customer> {
-        return CSVParser.parse(customersResource.inputStream, StandardCharsets.UTF_8, format)
-            .use { parser ->
-                parser.records
-                    .map { record ->
-                        Customer(
-                            id = record[CUSTOMER_ID].toLong(),
-                            email = record[EMAIL],
-                            dateOfBirth = record[DATE_OF_BIRTH].toDateOfBirth(),
-                            riskLevel = record[RISK_LEVEL].toInt(),
-                            retirementAge = record[RETIREMENT_AGE].toInt()
-                        )
-                    }
-            }
-    }
+    private val customersCsv: Resource,
+    private val format: CSVFormat = ApplicationDefaults.csvFormat
+) : CustomersProvider, CsvSource {
 
     private companion object {
 
@@ -34,6 +18,18 @@ class CsvCustomersProvider(
         private const val DATE_OF_BIRTH = "dateOfBirth"
         private const val RISK_LEVEL = "riskLevel"
         private const val RETIREMENT_AGE = "retirementAge"
+    }
+
+    override fun findAll(): Collection<Customer> {
+        return parseCsv(customersCsv, format) { record ->
+            Customer(
+                id = record[CUSTOMER_ID].toLong(),
+                email = record[EMAIL],
+                dateOfBirth = record[DATE_OF_BIRTH].toDateOfBirth(),
+                riskLevel = record[RISK_LEVEL].toInt(),
+                retirementAge = record[RETIREMENT_AGE].toInt()
+            )
+        }
     }
 }
 
