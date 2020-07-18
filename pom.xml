@@ -26,7 +26,11 @@
 
         <start-class>com.bcgdv.rebalancer.Launcher</start-class>
 
+        <!-- Dependencies -->
+        <commons-csv.version>1.8</commons-csv.version>
+
         <!-- Test dependencies -->
+        <commons-io.version>2.7</commons-io.version>
     </properties>
 
     <dependencies>
@@ -61,6 +65,12 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${commons-csv.version}</version>
+        </dependency>
+
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,6 +82,13 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
