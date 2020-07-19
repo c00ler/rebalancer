@@ -22,7 +22,7 @@ class StrategyAssigner(
 
         val assignedStrategy = strategiesProvider.findAll()
             .find { strategy -> strategy.appliesTo(customer.riskLevel, yearsToRetirement) } ?: Strategy.DEFAULT
-        log.info("Assigned strategy={} to customer={}", assignedStrategy.id, customer.id)
+        log.info("Assigned strategy={} to customer={} - {}", assignedStrategy.id, customer.id, assignedStrategy)
 
         return assignedStrategy
     }

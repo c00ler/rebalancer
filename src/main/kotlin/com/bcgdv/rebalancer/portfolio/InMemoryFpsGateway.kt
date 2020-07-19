@@ -7,20 +7,23 @@ class InMemoryFpsGateway : FpsGateway {
     private companion object {
 
         private val PORTFOLIOS =
-            mapOf(
-                1L to Portfolio(
-                    customerId = 1,
-                    stocks = 6700.toBigDecimal(),
-                    bonds = 1200.toBigDecimal(),
-                    cash = 400.toBigDecimal()
+            listOf(
+                Portfolio(
+                    customerId = 1, stocks = 6700.toBigDecimal(), bonds = 1200.toBigDecimal(), cash = 400.toBigDecimal()
                 ),
-                2L to Portfolio(
-                    customerId = 2,
-                    stocks = 400.toBigDecimal(),
-                    bonds = 1200.toBigDecimal(),
-                    cash = 6700.toBigDecimal()
+                Portfolio(
+                    customerId = 2, stocks = 400.toBigDecimal(), bonds = 1200.toBigDecimal(), cash = 6700.toBigDecimal()
+                ),
+                Portfolio(
+                    customerId = 3, stocks = 1000.toBigDecimal(), bonds = 5000.toBigDecimal(), cash = 700.toBigDecimal()
+                ),
+                Portfolio(
+                    customerId = 4, stocks = 5.toBigDecimal(), bonds = 1000.toBigDecimal(), cash = 3456.toBigDecimal()
+                ),
+                Portfolio(
+                    customerId = 5, stocks = 464.toBigDecimal(), bonds = 8000.toBigDecimal(), cash = 1214.toBigDecimal()
                 )
-            )
+            ).associateBy { it.customerId }
     }
 
     private val log = loggerFor<InMemoryFpsGateway>()
@@ -28,6 +31,8 @@ class InMemoryFpsGateway : FpsGateway {
     override fun portfolio(customerId: Long) = PORTFOLIOS[customerId]
 
     override fun trade(trades: Collection<Trade>) {
-        TODO("Not yet implemented")
+        log.info(">> Received batch of {} trades", trades.size)
+        trades.forEach { log.info(">> {}", it) }
+        log.info(">> ---")
     }
 }

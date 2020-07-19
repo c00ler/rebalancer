@@ -1,3 +1,7 @@
 customerId,email,dateOfBirth,riskLevel,retirementAge
 1,bob@bob.com,1961-04-29,3,65
 2,sally@gmail.com,1978-05-01,8,67
+3,tim@gmial.com,1980-06-14,1,40
+4,john@example.com,1965-02-03,1,70
+5,anna@yahoo.com,1990-09-11,3,58
+6,none@gmail.com,2000-01-01,0,60
