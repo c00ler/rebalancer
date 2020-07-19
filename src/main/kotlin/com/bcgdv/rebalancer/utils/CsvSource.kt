@@ -8,6 +8,9 @@ import java.nio.charset.StandardCharsets
 
 interface CsvSource {
 
+    /**
+     * Parses CSV file using given format and applies transformation to each record.
+     */
     fun <T> parseCsv(resource: Resource, format: CSVFormat, mapper: (CSVRecord) -> T): Collection<T> {
         return CSVParser.parse(resource.inputStream, StandardCharsets.UTF_8, format)
             .use { parser ->
