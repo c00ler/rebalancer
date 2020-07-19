@@ -47,6 +47,11 @@ Over the time output will change because of the time, that is used for the `age`
 Example output:
 ![Example output](images/output.png?raw=true)
 
+## Configuration
+
+The maximum amount of trades per batch can be configured via `fps.batch-size` property in [application.yml](src/main/resources/application.yml).
+Default value `2`. If removed, batch size will be `1` (no batching).  
+
 ## Input data
 
 - Customers defined in the csv file [customers.csv](src/main/resources/customers.csv)
