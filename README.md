@@ -50,7 +50,7 @@ Example output:
 ## Configuration
 
 The maximum amount of trades per batch can be configured via `fps.batch-size` property in [application.yml](src/main/resources/application.yml).
-Default value `2`. If removed, batch size will be `1` (no batching).  
+Default value is `2`. If removed, batch size will be `1` (no batching).  
 
 ## Input data
 
