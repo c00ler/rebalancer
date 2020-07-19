@@ -12,5 +12,14 @@ data class Customer(
     val retirementAge: Int
 ) {
 
-    fun yearsToRetirementAt(date: LocalDate) = retirementAge - Period.between(dateOfBirth, date).years
+    /**
+     * Calculates years to retirement at a given date.
+     */
+    fun yearsToRetirementAt(date: LocalDate): Int {
+        require(date.isAfter(dateOfBirth)) {
+            "Date must be after date of birth $dateOfBirth"
+        }
+
+        return retirementAge - Period.between(dateOfBirth, date).years
+    }
 }
