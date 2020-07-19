@@ -3,16 +3,25 @@ package com.bcgdv.rebalancer.strategy
 // For simplicity only integer percentages are allowed
 data class Strategy(
     val id: Long,
-    val riskLevelRange: IntRange,
-    val yearsToRetirementRange: IntRange,
-    val stocksPercentage: Int,
+    val riskLevelRange: IntRange = IntRange.EMPTY,
+    val yearsToRetirementRange: IntRange = IntRange.EMPTY,
+    val stocksPercentage: Int, // TODO: probably it's better to extract allocation into a separate object
     val cashPercentage: Int,
     val bondsPercentage: Int
 ) {
 
-    private companion object {
+    companion object {
 
         private const val REQUIRED_PERCENTAGE = 100
+        private const val DEFAULT_STRATEGY_ID = -1L
+
+        val DEFAULT =
+            Strategy(
+                id = DEFAULT_STRATEGY_ID,
+                stocksPercentage = 0,
+                cashPercentage = 100,
+                bondsPercentage = 0
+            )
     }
 
     init {
@@ -25,4 +34,7 @@ data class Strategy(
             "Total percentage must be equal to $REQUIRED_PERCENTAGE%, but is $totalPercentage%"
         }
     }
+
+    fun appliesTo(riskLevel: Int, yearsToRetirement: Int) =
+        riskLevelRange.contains(riskLevel) && yearsToRetirementRange.contains(yearsToRetirement)
 }

@@ -1,7 +1,9 @@
 package com.bcgdv.rebalancer.strategy
 
 import com.bcgdv.rebalancer.TestData.aStrategy
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
@@ -34,4 +36,23 @@ class StrategyTest {
                     .hasMessageContainingAll("All percentages must be positive")
             }
         )
+
+    @TestFactory
+    fun `should include range boundaries when checking if strategy applies`(): Collection<DynamicTest> {
+        val strategy = aStrategy(riskLevelRange = 0..3, yearsToRetirementRange = 20..30)
+        return listOf(
+            dynamicTest("minimum risk level") {
+                assertThat(strategy.appliesTo(0, 25)).isTrue()
+            },
+            dynamicTest("maximum risk level") {
+                assertThat(strategy.appliesTo(3, 25)).isTrue()
+            },
+            dynamicTest("minimum years to retirement") {
+                assertThat(strategy.appliesTo(1, 20)).isTrue()
+            },
+            dynamicTest("maximum years to retirement") {
+                assertThat(strategy.appliesTo(1, 30)).isTrue()
+            }
+        )
+    }
 }
