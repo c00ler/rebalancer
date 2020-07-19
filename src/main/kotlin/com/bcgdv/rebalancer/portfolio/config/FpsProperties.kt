@@ -8,6 +8,11 @@ import javax.validation.constraints.Positive
 @Validated
 class FpsProperties {
 
+    companion object {
+
+        const val DEFAULT_BATCH_SIZE = 1
+    }
+
     @Positive
-    var batchSize: Int = 1
+    var batchSize: Int = DEFAULT_BATCH_SIZE
 }
