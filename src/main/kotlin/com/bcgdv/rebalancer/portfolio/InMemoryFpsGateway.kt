@@ -2,7 +2,7 @@ package com.bcgdv.rebalancer.portfolio
 
 import com.bcgdv.rebalancer.utils.loggerFor
 
-class InMemoryFpsGateway : FpsGateway {
+open class InMemoryFpsGateway : FpsGateway {
 
     private companion object {
 
