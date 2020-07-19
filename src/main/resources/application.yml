@@ -3,3 +3,6 @@ spring:
     name: rebalancer
   main:
     banner-mode: "off"
+
+fps:
+  batch-size: 2
