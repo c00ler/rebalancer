@@ -47,8 +47,8 @@ Over the time output will change because of the time, that is used for the `age`
 Example output:
 ![Example output](images/output.png?raw=true)
 
-## Data
+## Input data
 
-Customers - ![customers.csv](src/main/resources/customers.csv)
-
-Strategies - ![strategy.csv](src/main/resources/strategy.csv)
+- Customers defined in the csv file [customers.csv](src/main/resources/customers.csv)
+- Strategies defined in the csv file [strategy.csv](src/main/resources/strategy.csv)
+- Portfolios defined in the code [InMemoryFpsGateway.kt](src/main/kotlin/com/bcgdv/rebalancer/portfolio/InMemoryFpsGateway.kt)
