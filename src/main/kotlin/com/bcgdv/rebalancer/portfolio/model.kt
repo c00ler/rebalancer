@@ -11,6 +11,11 @@ data class Portfolio(
     val cash: BigDecimal
 ) {
 
+    /**
+     * Rebalances portfolio according to provided strategy.
+     *
+     * @return [Trade] object that contains changes to the portfolio
+     */
     fun rebalance(strategy: Strategy): Trade {
         val total = stocks + bonds + cash
         return Trade(
