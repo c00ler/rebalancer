@@ -18,12 +18,15 @@ data class Portfolio(
      */
     fun rebalance(strategy: Strategy): Trade {
         val total = stocks + bonds + cash
-        return Trade(
-            customerId = customerId,
-            stocksDelta = strategy.stocksPercentage.percentOf(total) - stocks,
-            bondsDelta = strategy.bondsPercentage.percentOf(total) - bonds,
-            cashDelta = strategy.cashPercentage.percentOf(total) - cash
-        )
+
+        with(strategy) {
+            return Trade(
+                customerId = customerId,
+                stocksDelta = stocksPercentage.percentOf(total) - stocks,
+                bondsDelta = bondsPercentage.percentOf(total) - bonds,
+                cashDelta = cashPercentage.percentOf(total) - cash
+            )
+        }
     }
 }
 
