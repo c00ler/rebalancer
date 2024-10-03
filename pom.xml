@@ -31,7 +31,7 @@
         <commons-csv.version>1.8</commons-csv.version>
 
         <!-- Test dependencies -->
-        <commons-io.version>2.7</commons-io.version>
+        <commons-io.version>2.14.0</commons-io.version>
         <mockk.version>1.10.0</mockk.version>
     </properties>
 
